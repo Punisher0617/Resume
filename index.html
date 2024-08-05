@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+
+    <style>
+        /* Resetting default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+
+        }
+
+        #h {
+            font-weight: bold;
+            font-size: 160%;
+            animation: backInLeft;
+            animation-duration: 0.5s;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.365);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            transition: all ease 0.5s;
+            animation: fadeInDown;
+            animation-duration: 0.9s;
+            height: 9vh;
+        }
+
+        .navbar:hover {
+            background-color: rgba(150, 150, 150, 0.31);
+            box-shadow: 1px 1px 50px rgb(255, 255, 255);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            animation: backInDown;
+            animation-duration: 1.7s;
+        }
+
+        .logo h2 {
+            font-size: 220%;
+            color: white;
+            text-shadow: 0px 0px 5px #1ebfdd, 0px 0px 5px #1ebfdd;
+            margin: 0 10px;
+        }
+
+        .logo h2:hover {
+            text-shadow: 0px 0px 5px#1ebfdd, 0px 0px 5px #1ebfdd, 0px 0px 5px#1ebfdd, 0px 0px 5px #1ebfdd;
+
+        }
+
+        .logo {
+            transition: all ease 0.5s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+
+        }
+
+        .rotating-logo {
+            animation: rotateLogo 6s linear infinite;
+        }
+
+        @keyframes rotateLogo {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            50% {
+                transform: rotateY(180deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .menu-icon {
+            display: none;
+            /* Hidden by default for larger screens */
+            cursor: pointer;
+        }
+
+        .menu-line {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            animation: backInDown;
+            animation-duration: 1.7s;
+        }
+
+        .nav-links li {
+            margin-right: 27px;
+            animation: backInDown;
+            animation-duration: 1.7s;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all ease 0.3s;
+            font-size: 110%;
+
+        }
+
+        .nav-links li a:hover {
+            color: #00d7ff;
+            text-shadow: 1px 0px 1px #FFF;
+        }
+
+        .nav-links li {
+            transition: all ease 0.5s;
+        }
+
+        .nav-links li:hover {
+            transform: scale(1.09);
+        }
+
+
+        .search-bar {
+            display: none;
+            /* Hidden by default */
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(0 0 0 / 41%);
+            /* Add a semi-transparent black background */
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 5px;
+            border: solid 1px white;
+        }
+
+        .search-bar input {
+            width: 250px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            outline: none;
+            background-color: #C0C0C0;
+            margin-right: 10px;
+        }
+
+        .close-btn {
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        a {
+            list-style: none;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+
+        }
+
+        #hello {
+            font-size: 130%;
+            font-weight: bold;
+            text-align: right;
+            color: #FFF;
+            filter: drop-shadow(1px 1px 5px #FFF);
+            animation: backInDown;
+            animation-duration: 1.7s;
+        }
+
+        #uname {
+            font-size: 130%;
+            font-weight: bold;
+            text-align: right;
+            color: #00d7ff;
+            filter: drop-shadow(1px 1px 5px #00d7ff);
+            animation: backInDown;
+            animation-duration: 1.7s;
+
+        }
+
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-image: linear-gradient(45deg, black 0%, grey 25%, #dfdfdf 50%, grey 75%, black 100%);
+            /* color of the scroll thumb */
+        }
+
+        .auction-dropdown-content {
+            display: none;
+            position: absolute;
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 5px;
+            border: solid 1px white;
+            z-index: 2;
+            width: 150%;
+            font-size: 80%;
+        }
+
+        .auction-dropdown:hover .auction-dropdown-content {
+            display: block;
+        }
+
+        /* Media query for responsiveness */
+        @media screen and (max-width: 768px) {
+            nav {
+                z-index: 2;
+            }
+
+            .navbar:hover {
+                background-color: rgb(14 14 14);
+                box-shadow: 1px 1px 50px rgb(255, 255, 255);
+            }
+
+
+            .nav-links li {
+                animation: blank;
+            }
+
+            .nav-links {
+                animation: blank;
+            }
+
+            .logo-container {
+                margin-left: 10px;
+            }
+
+            .logo h2 {
+                font-size: 160%;
+                color: white;
+                text-shadow: 0px 0px 5px #1ebfdd, 0px 0px 5px #1ebfdd;
+            }
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                right: 0;
+                background-color: rgb(14 14 14);
+                font-size: 80%;
+                backdrop-filter: blur(10px);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                z-index: 2;
+            }
+
+            .nav-links.active {
+                display: flex;
+                z-index: 2;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                z-index: 2;
+            }
+
+            .search-bar {
+                position: relative;
+                top: initial;
+                left: initial;
+                transform: initial;
+            }
+
+            .search-bar {
+                display: none;
+                position: absolute;
+                top: 65px;
+                left: 160px;
+                transform: translateX(-50%);
+                background-color: rgb(0 0 0 / 41%);
+                backdrop-filter: blur(10px);
+                padding: 10px;
+                border-radius: 5px;
+                border: solid 1px white;
+            }
+
+            .search-bar input {
+                width: 150px;
+                height: 3.9vh;
+                padding: 5px;
+                border: none;
+                border-radius: 3px;
+                outline: none;
+                background-color: #C0C0C0;
+                margin-right: 10px;
+                font-size: 20px;
+            }
+
+            a {
+                list-style: none;
+                text-decoration: none;
+            }
+
+            #hello {
+                font-size: 100%;
+                font-weight: bold;
+                text-align: right;
+                color: #FFF;
+                filter: drop-shadow(1px 1px 5px #FFF);
+                animation: backInDown;
+                animation-duration: 1.7s;
+            }
+
+            #uname {
+                font-size: 100%;
+                font-weight: bold;
+                text-align: right;
+                color: #00d7ff;
+                filter: drop-shadow(1px 1px 5px #00d7ff);
+                animation: backInDown;
+                animation-duration: 1.7s;
+
+            }
+
+        }
+    </style>
+
+
+    <style>
+        .containerr {
+            /* Basic dimensions and centering */
+            width: 100%;
+            height: 100%;
+            display: block;
+            justify-content: center;
+            align-items: center;
+
+            /* Dark mode colors and gradient */
+            background: #121212;
+            /* Fallback for browsers that don't support gradients */
+            background: linear-gradient(135deg,
+                    #121212 25%,
+                    #1a1a1a 25%,
+                    #1a1a1a 50%,
+                    #121212 50%,
+                    #121212 75%,
+                    #1a1a1a 75%,
+                    #1a1a1a);
+            background-size: 40px 40px;
+
+            /* Animation */
+            animation: move 4s linear infinite;
+        }
+
+        .intro {
+            display: flex;
+            justify-content: space-between;
+            width: 85%;
+            margin-top: 10%;
+            margin-bottom: 10%;
+        }
+
+        .intro1 {
+            align-items: flex-start;
+            text-align: left;
+            width: 35%;
+            /* Ensure it takes half the width */
+        }
+
+        .intro2 {
+            align-items: flex-start;
+            text-align: right;
+            width: 50%;
+            /* Ensure it takes half the width */
+        }
+
+        .title {
+            font-size: 150%;
+            color: whitesmoke;
+        }
+
+        .title1 {
+            font-size: 330%;
+            font-weight: bold;
+            color: whitesmoke;
+        }
+
+        .title2 {
+            font-size: 180%;
+            font-weight: bold;
+            color: whitesmoke;
+        }
+
+        .aboutme {
+            display: flex;
+            justify-content: space-around;
+            width: 85%;
+            height: 480px;
+            background-color: rgba(91, 91, 91, 0.429);
+            border-radius: 10px;
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 40px 40px;
+            }
+        }
+
+        /* From Uiverse.io by vamsidevendrakumar */
+        .card {
+            width: 400px;
+            height: 300px;
+            perspective: 1000px;
+            background-color: rgba(91, 91, 91, 0);
+
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.999s;
+            border-radius: 10px;
+            box-shadow: 8px 8px 12px rgba(255, 255, 255, 0.419);
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .card-front {
+            background: linear-gradient(315deg, #03a9f4, #ff0058);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            border: 3px solid #ffffff;
+            border-radius: 10px;
+            justify-content: center;
+            font-size: 24px;
+            transform: rotateY(0deg);
+        }
+
+        .card-back {
+            background: linear-gradient(-135deg,
+                    #0703f7, #bcff04);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            border: 5px solid #ffffff;
+            border-radius: 10px;
+            justify-content: center;
+            font-size: 24px;
+            transform: rotateY(180deg);
+        }
+
+        
+        .cardd {
+            width: 85%;
+            height: 70vh;
+            border-radius: 30px;
+            background: #212121ac;
+            font-weight: bold;
+            box-shadow: 15px 15px 30px rgb(25, 25, 25),
+                -15px -15px 30px rgb(60, 60, 60);
+                text-align: left;
+                color: whitesmoke;
+              
+        }
+        .intro_img {
+               
+                animation: backInRight;
+                animation-duration: 1s;
+            }
+
+        @media screen and (max-width: 768px) {
+
+            .intro {
+                padding-top: 100px;
+            }
+
+            .title {
+                font-size: 120%;
+            }
+
+            .title1 {
+                font-size: 140%;
+            }
+
+            .title2 {
+                font-size: 100%;
+            }
+
+            .intro_img {
+                width: 110%;
+                height: 17vh;
+                animation: backInRight;
+                animation-duration: 0.5s;
+            }
+
+            .dis {
+                font-size: 70%;
+
+            }
+
+            .aboutme {
+                display: block;
+                width: 85%;
+                height: 72vh;
+
+            }
+
+            .card {
+                width: 300px;
+                height: 200px;
+                perspective: 1000px;
+                background-color: rgba(91, 91, 91, 0);
+
+            }
+
+            #qe {
+                font-size: 12px;
+            }
+
+            .lf {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body class="containerr">
+
+
+    <nav class="navbar fixed-top bg-body-tertiary">
+        <div class="logo-container">
+            <div class="logo">
+                <table>
+                    <tr>
+                        <td>
+                            <a href="product.php">
+                                <h2 id="h">Krupal</h2>
+                            </a>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            <a href="product.php">
+                                <h2 id="h"></h2>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#intro">Home</a></li>
+
+            <li> <a href="#aboutus">About Us </a></li>
+
+            <li><a href="#expr">Expierence</a></li>
+
+            <li><a href="#conc">Contact</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="search" placeholder="Search..." id="search">
+            <span class="close-btn" onclick="toggleSearch()">&times;</span>
+        </div>
+        <div>
+            <h6 id="hello"></h6>
+            <h6 id="uname"></h6>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </div>
+    </nav>
+
+    <center>
+        <div class="intro" id="intro">
+            <div class="intro1">
+                <span class="title">Hello , </span><br>
+                <span class="title1">I'm Krupal </span><br>
+                <span class="title2">Web Developer</span><br><br>
+                <span style="color: grey;" class="dis">Web Developer with expertise in creating responsive,
+                    user-friendly websites
+                    using HTML, CSS, and JavaScript. Proven ability to deliver high-quality solutions that enhance user
+                    experience and meet project goals.</span>
+            </div>
+            <div class="intro2">
+                <img src="intro_img.png" alt="" width="100%" height="300vh" class="intro_img">
+            </div>
+        </div>
+
+
+
+        <h1 style="color: #ffffff; font-size: 245%;font-weight: bold;text-shadow: 2px 2px 3px cyan;" id="aboutus">ABOUT
+            US</h1>
+        <div class="aboutme mt-3 mb-5 ">
+            <div class="" style="padding-top: 70px; animation: backInLeft; animation-duration: 1s;">
+                <div class="card ">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h1><b
+                                    style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-shadow: 2px 2px 2px #121212;">Languages
+                                    & Framework Known </b></h1>
+                        </div>
+                        <div class="card-back">
+                            <div
+                                style="display: flex; font-size: 22px;font-weight: bold; text-align: left;text-shadow: 3px 3px 5px black;">
+
+                                <ul style="width: 50%;" class="lf">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JS</li>
+                                    <li>PHP</li>
+                                    <li>BOOTSTRAP</li>
+
+                                </ul>
+
+                                <ul style="width: 50%;margin-left: 32px;" class="lf">
+                                    <li>AJAX</li>
+                                    <li>JQUERY</li>
+                                    <li>REACT.JS</li>
+                                    <li>GIT</li>
+                                    <li>GIT HUB</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="" style="padding-top: 70px; animation: backInRight;animation-duration: 1s;">
+                <div class="card ">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h1><b
+                                    style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-shadow: 2px 2px 2px #121212;">Education
+                                    & Qualification </b></h1>
+
+                        </div>
+                        <div class="card-back">
+                            <div
+                                style="display: flex; font-size: 18px;font-weight: bold; text-align: left;text-shadow: 3px 3px 5px black;">
+
+                                <ul id="qe">
+                                    <li>Bachelor of Computer Applications (BCA)</li>
+                                    <li>SDJ International College</li>
+                                    <li> VNSGU University</li>
+                                    <li>Year of Graduation: 2024</li>
+                                    <li>Last Year CGPA: 7.96</li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="exp">'
+            <h1 class="mb-5" style="color: #ffffff; font-size: 245%;font-weight: bold;text-shadow: 2px 2px 3px cyan;" id="expr">
+                EXPERIENCE</h1>
+
+
+
+            <div class="cardd mb-5"><br>
+                <h3> &nbsp Expierence</h3><br>
+
+                <h5>  &nbsp &nbsp Unicro <a href="https://unicroerp.com">(https://unicroerp.com)</a></h5> 
+
+                <p> &nbsp &nbsp &nbspPosition: Web Developer <br>
+                    &nbsp &nbsp &nbspDuration: 5+ months</p><br>
+
+                <p>  &nbsp &nbsp &nbspResponsibilities:</p>
+
+                <ul class="ml-5">
+                    <li>Collaborated with the development team to design and implement responsive web applications.</li>
+                    <li>Utilized HTML, CSS, JavaScript, and various front-end frameworks to create dynamic and user-friendly web pages.</li>
+                    <li>Assisted in debugging and troubleshooting code to ensure optimal functionality and performance.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="contact" >
+            <h1 class="mb-5" style="color: #ffffff; font-size: 245%;font-weight: bold;text-shadow: 2px 2px 3px cyan;" id="conc">CONTACT US</h1>
+
+            <ul style="font-size: 26px;color:white">
+                <li> Whatsapp - <a href="https://wa.me/qr/LQLB3RQTSZR5B1">( https://wa.me/qr/LQLB3RQTSZR5B1 )</a></li>
+                <li>Instagram - <a href="https://www.instagram.com/krupal1710/">( https://www.instagram.com/krupal1710/ )</a></li>
+                <li>GitHub - <a href="https://github.com/Punisher0617">( https://github.com/Punisher0617 )</a></li>
+            </ul>
+
+        </div>
+
+    </center>
+    <script>
+        function toggleMenu() {
+            var navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleSearch() {
+            var searchBar = document.querySelector('.search-bar');
+            searchBar.style.display = searchBar.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+
+</html>
